@@ -8,6 +8,7 @@ import { CreateAdModal } from './components/Form/CreateAdModal'
 
 import logoImg from './assets/logo.svg'
 import './styles/main.css'
+import axios from 'axios'
 
 
 interface Game {
@@ -24,10 +25,10 @@ function App() {
   const [games, setGames] = useState<Game[]>([])
 
   useEffect(() => {
-    fetch('http://localhost:3333/games')
-      .then(response => response.json())
-      .then(data => setGames(data))
+    axios('http://localhost:3333/games')
+      .then(response => setGames(response.data))
   }, [])
+
   console.log(games)
   return (
     <div className="max-w-[1344px] mx-auto flex flex-col items-center my-20">
